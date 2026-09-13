@@ -339,11 +339,12 @@ export default function Model3DDetailPage({
                 src={data.modelPath}
                 poster={data.posterImage}
                 alt={data.title}
-                loading="lazy"
+                loading="eager"
+                render-scale="1"
                 camera-controls
                 auto-rotate={isAutoRotate ? true : undefined}
                 auto-rotate-delay="0"
-                shadow-intensity="1.5"
+                shadow-intensity="0.5"
                 exposure="1"
                 interaction-prompt="none"
                 camera-orbit="0deg 75deg 105%"
