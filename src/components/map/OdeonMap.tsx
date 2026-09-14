@@ -157,7 +157,7 @@ export default function OdeonMap() {
   });
 
   return (
-    <div className="bg-white rounded-3xl p-4 sm:p-6 shadow-sm border border-stone-200/90 space-y-6">
+    <div className="bg-white dark:bg-stone-900 rounded-3xl p-4 sm:p-6 shadow-sm border border-stone-200/90 dark:border-stone-800 space-y-6">
       <style jsx global>{`
         .leaflet-popup-content-wrapper {
           padding: 0 !important;
@@ -181,8 +181,8 @@ export default function OdeonMap() {
             onClick={() => setActiveCategory("Semua")}
             className={`px-4 py-2 rounded-full text-xs font-semibold transition-colors ${
               activeCategory === "Semua"
-                ? "bg-[#580A14] text-white shadow-sm"
-                : "bg-stone-100 text-stone-700 hover:bg-stone-200"
+                ? "bg-[#580A14] dark:bg-amber-600 text-white dark:text-stone-950 shadow-sm"
+                : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700"
             }`}
           >
             {t.allFilter} ({ATTRACTIONS_DATA.length} {language === "ID" ? "Titik" : "Spots"})
@@ -191,29 +191,29 @@ export default function OdeonMap() {
             onClick={() => setActiveCategory("Wisata & Budaya")}
             className={`px-4 py-2 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
               activeCategory === "Wisata & Budaya"
-                ? "bg-[#580A14] text-white shadow-sm"
-                : "bg-stone-100 text-stone-700 hover:bg-stone-200"
+                ? "bg-[#580A14] dark:bg-amber-600 text-white dark:text-stone-950 shadow-sm"
+                : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700"
             }`}
           >
-            <span className="w-2 h-2 rounded-full bg-[#580A14]" />
+            <span className="w-2 h-2 rounded-full bg-[#580A14] dark:bg-amber-500" />
             {t.heritageFilter} (2)
           </button>
           <button
             onClick={() => setActiveCategory("Kuliner Legendaris")}
             className={`px-4 py-2 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
               activeCategory === "Kuliner Legendaris"
-                ? "bg-amber-700 text-white shadow-sm"
-                : "bg-stone-100 text-stone-700 hover:bg-stone-200"
+                ? "bg-amber-700 dark:bg-amber-600 text-white dark:text-stone-950 shadow-sm"
+                : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-700"
             }`}
           >
-            <span className="w-2 h-2 rounded-full bg-amber-700" />
+            <span className="w-2 h-2 rounded-full bg-amber-700 dark:bg-amber-400" />
             {t.culinaryFilter} (1)
           </button>
         </div>
 
         <button
           onClick={() => setShowGuide(!showGuide)}
-          className="text-xs font-semibold px-3 py-1.5 rounded-full border border-amber-300 bg-amber-50 text-amber-900 hover:bg-amber-100 transition-colors flex items-center gap-1"
+          className="text-xs font-semibold px-3 py-1.5 rounded-full border border-amber-300 dark:border-amber-700/60 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 hover:bg-amber-100 dark:hover:bg-amber-900/60 transition-colors flex items-center gap-1"
         >
           {t.guideButton}
         </button>
@@ -221,41 +221,41 @@ export default function OdeonMap() {
 
       {/* 2. Banner Panduan */}
       {showGuide && (
-        <div className="relative bg-amber-50/60 border border-amber-200/80 rounded-2xl p-4 md:p-5 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-stone-700">
+        <div className="relative bg-amber-50/60 dark:bg-amber-950/40 border border-amber-200/80 dark:border-amber-900/50 rounded-2xl p-4 md:p-5 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-stone-700 dark:text-stone-300">
           <button
             onClick={() => setShowGuide(false)}
-            className="absolute top-3 right-3 text-stone-400 hover:text-stone-700"
+            className="absolute top-3 right-3 text-stone-400 dark:text-stone-500 hover:text-stone-700 dark:hover:text-stone-300"
           >
             <X className="w-4 h-4" />
           </button>
           
-          <div className="md:col-span-1 space-y-1 border-b md:border-b-0 md:border-r border-amber-200/60 pb-3 md:pb-0 md:pr-4">
-            <span className="text-[10px] uppercase font-bold text-[#580A14] tracking-wider">
+          <div className="md:col-span-1 space-y-1 border-b md:border-b-0 md:border-r border-amber-200/60 dark:border-amber-900/40 pb-3 md:pb-0 md:pr-4">
+            <span className="text-[10px] uppercase font-bold text-[#580A14] dark:text-amber-400 tracking-wider">
               {t.guideBadge}
             </span>
-            <h4 className="font-serif font-bold text-sm text-stone-900">
+            <h4 className="font-serif font-bold text-sm text-stone-900 dark:text-stone-100">
               {t.guideTitle}
             </h4>
-            <p className="text-stone-600 text-[11px] leading-relaxed">
+            <p className="text-stone-600 dark:text-stone-400 text-[11px] leading-relaxed">
               {t.guideDesc}
             </p>
           </div>
 
           <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
             <div className="space-y-0.5">
-              <strong className="text-stone-900 font-semibold">• {t.guideItem1Title}</strong>
-              <p className="text-stone-600 text-[11px]">{t.guideItem1Desc}</p>
+              <strong className="text-stone-900 dark:text-stone-100 font-semibold">• {t.guideItem1Title}</strong>
+              <p className="text-stone-600 dark:text-stone-400 text-[11px]">{t.guideItem1Desc}</p>
             </div>
             <div className="space-y-0.5">
-              <strong className="text-stone-900 font-semibold">• {t.guideItem2Title}</strong>
-              <p className="text-stone-600 text-[11px]">{t.guideItem2Desc}</p>
+              <strong className="text-stone-900 dark:text-stone-100 font-semibold">• {t.guideItem2Title}</strong>
+              <p className="text-stone-600 dark:text-stone-400 text-[11px]">{t.guideItem2Desc}</p>
             </div>
           </div>
         </div>
       )}
 
       {/* 3. Peta Interaktif Utama */}
-      <div className="relative w-full h-[480px] md:h-[520px] rounded-2xl overflow-hidden border border-stone-200 z-10 shadow-inner">
+      <div className="relative w-full h-[480px] md:h-[520px] rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 z-10 shadow-inner">
         <MapContainer
           center={ODEON_CENTER}
           zoom={17}
@@ -291,38 +291,38 @@ export default function OdeonMap() {
                 }}
               >
                 <Popup className="custom-popup-card" autoPan={true}>
-                  <div className="bg-white p-4 space-y-3">
+                  <div className="bg-white dark:bg-stone-900 p-4 space-y-3">
                     <div className="flex gap-3 items-start">
                       <div className="w-10 h-10 rounded-xl bg-[#580A14] text-amber-100 flex items-center justify-center shrink-0 shadow-sm">
                         <MapPin className="w-5 h-5" />
                       </div>
                       <div className="space-y-1">
-                        <span className="text-[9px] font-bold uppercase tracking-wider text-[#580A14] bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                        <span className="text-[9px] font-bold uppercase tracking-wider text-[#580A14] dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800">
                           {categoryText}
                         </span>
-                        <h3 className="font-serif font-bold text-base text-stone-900 leading-snug pt-1.5">
+                        <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 leading-snug pt-1.5">
                           {item.name}
                         </h3>
                       </div>
                     </div>
 
-                    <p className="text-xs text-stone-600 leading-relaxed line-clamp-2">
+                    <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed line-clamp-2">
                       {descriptionText}
                     </p>
 
-                    <div className="pt-2 flex items-center justify-between gap-2 border-t border-stone-100">
-                      <div className="flex items-center gap-1 text-[11px] text-stone-500">
-                        <Clock className="w-3.5 h-3.5 text-[#580A14]" />
+                    <div className="pt-2 flex items-center justify-between gap-2 border-t border-stone-100 dark:border-stone-800">
+                      <div className="flex items-center gap-1 text-[11px] text-stone-500 dark:text-stone-400">
+                        <Clock className="w-3.5 h-3.5 text-[#580A14] dark:text-amber-400" />
                         <span>{item.operationalHours}</span>
                       </div>
                       <a
                         href={item.location.googleMapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 bg-[#580A14] text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-amber-900 transition-colors shadow-sm"
+                        className="inline-flex items-center gap-1.5 bg-[#580A14] dark:bg-amber-600 text-white dark:text-stone-950 text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-amber-900 dark:hover:bg-amber-500 transition-colors shadow-sm"
                       >
-                        <span className="text-white">{t.getDirections}</span>
-                        <Navigation className="w-3 h-3 text-white" />
+                        <span>{t.getDirections}</span>
+                        <Navigation className="w-3 h-3" />
                       </a>
                     </div>
                   </div>
@@ -334,14 +334,14 @@ export default function OdeonMap() {
       </div>
 
       {/* 4. Footer Bar Peta */}
-      <div className="bg-stone-50 rounded-2xl p-4 border border-stone-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-        <div className="flex items-center gap-2 text-stone-700 font-medium">
-          <div className="w-7 h-7 rounded-full bg-stone-200 flex items-center justify-center shrink-0">
-            <MapPin className="w-4 h-4 text-[#580A14]" />
+      <div className="bg-stone-50 dark:bg-stone-800 rounded-2xl p-4 border border-stone-200/80 dark:border-stone-700 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+        <div className="flex items-center gap-2 text-stone-700 dark:text-stone-300 font-medium">
+          <div className="w-7 h-7 rounded-full bg-stone-200 dark:bg-stone-700 flex items-center justify-center shrink-0">
+            <MapPin className="w-4 h-4 text-[#580A14] dark:text-amber-400" />
           </div>
           <div>
-            <strong className="block text-stone-900">{t.footerTitle}</strong>
-            <span className="text-stone-500 text-[11px]">{t.footerAddress}</span>
+            <strong className="block text-stone-900 dark:text-stone-100">{t.footerTitle}</strong>
+            <span className="text-stone-500 dark:text-stone-400 text-[11px]">{t.footerAddress}</span>
           </div>
         </div>
 
@@ -349,7 +349,7 @@ export default function OdeonMap() {
           href={overallKawasanGmapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-[#580A14] hover:bg-amber-900 text-amber-100 px-4 py-2.5 rounded-xl font-semibold transition-colors shrink-0 shadow-sm"
+          className="inline-flex items-center gap-2 bg-[#580A14] hover:bg-amber-900 dark:bg-amber-600 dark:hover:bg-amber-500 text-amber-100 dark:text-stone-950 px-4 py-2.5 rounded-xl font-semibold transition-colors shrink-0 shadow-sm"
         >
           <span>{t.openGmaps}</span>
           <ExternalLink className="w-3.5 h-3.5" />

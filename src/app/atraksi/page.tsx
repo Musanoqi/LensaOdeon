@@ -163,7 +163,7 @@ export default function AtraksiPage() {
         {/* HEADER PAGE */}
         <section className="text-center max-w-3xl mx-auto space-y-4">
           <FadeIn direction="down" delay={0.1}>
-            <span className="inline-block text-xs uppercase tracking-widest text-[#580A14] bg-amber-100/80 border border-amber-200/80 font-semibold px-4 py-1.5 rounded-full shadow-sm">
+            <span className="inline-block text-xs uppercase tracking-widest text-[#580A14] dark:text-amber-300 bg-amber-100/80 dark:bg-amber-950/80 border border-amber-200/80 dark:border-amber-800/60 font-semibold px-4 py-1.5 rounded-full shadow-sm">
               {t.badge}
             </span>
           </FadeIn>

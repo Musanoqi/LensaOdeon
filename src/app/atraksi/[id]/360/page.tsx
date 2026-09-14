@@ -293,17 +293,33 @@ export default function Tour360DetailPage({
 
     setCurrentSceneId(data.defaultScene);
 
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css";
-    document.head.appendChild(link);
+    const cssUrl = "https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css";
+    const jsUrl = "https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js";
 
-    const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js";
-    script.onload = () => {
+    let link = document.querySelector(`link[href="${cssUrl}"]`) as HTMLLinkElement;
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = cssUrl;
+      document.head.appendChild(link);
+    }
+
+    if (window.pannellum) {
       initViewer(data.defaultScene);
-    };
-    document.head.appendChild(script);
+    } else {
+      let script = document.querySelector(`script[src="${jsUrl}"]`) as HTMLScriptElement;
+      if (!script) {
+        script = document.createElement("script");
+        script.src = jsUrl;
+        script.onload = () => {
+          initViewer(data.defaultScene);
+        };
+        document.head.appendChild(script);
+      } else {
+        const handleLoad = () => initViewer(data.defaultScene);
+        script.addEventListener("load", handleLoad);
+      }
+    }
 
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
@@ -312,8 +328,6 @@ export default function Tour360DetailPage({
     document.addEventListener("fullscreenchange", handleFullscreenChange);
 
     return () => {
-      if (document.head.contains(link)) document.head.removeChild(link);
-      if (document.head.contains(script)) document.head.removeChild(script);
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
     };
   }, [data]);
@@ -385,25 +399,25 @@ export default function Tour360DetailPage({
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF8F5] pt-28 pb-24 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#FAF8F5] dark:bg-[#1C1917] pt-28 pb-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-12">
         
         {/* HEADER JUDUL */}
         <section className="text-center max-w-3xl mx-auto space-y-3">
           <FadeIn direction="down" delay={0.1}>
-            <span className="inline-block text-xs uppercase tracking-widest text-[#580A14] bg-amber-100/80 border border-amber-200/80 font-bold px-4 py-1.5 rounded-full shadow-sm">
+            <span className="inline-block text-xs uppercase tracking-widest text-[#580A14] dark:text-amber-300 bg-amber-100/80 dark:bg-amber-950/80 border border-amber-200/80 dark:border-amber-800/60 font-bold px-4 py-1.5 rounded-full shadow-sm">
               TUR VIRTUAL 360° IMERSIF
             </span>
           </FadeIn>
 
           <FadeIn direction="up" delay={0.15}>
-            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-stone-900 leading-tight">
+            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-stone-900 dark:text-stone-100 leading-tight">
               {data.title}
             </h1>
           </FadeIn>
 
           <FadeIn direction="up" delay={0.2}>
-            <p className="text-stone-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+            <p className="text-stone-600 dark:text-stone-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
               {lang === "ID"
                 ? "Jelajahi setiap sudut ruangan dan fasilitas cagar budaya secara interaktif dari perangkat Anda."
                 : "Explore every corner of the room and heritage facilities interactively from your device."}
@@ -421,9 +435,9 @@ export default function Tour360DetailPage({
                 href={data.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-700 bg-white hover:bg-stone-100 border border-stone-200 px-3.5 py-1.5 rounded-xl shadow-sm transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-700 dark:text-stone-200 bg-white dark:bg-stone-800 hover:bg-stone-100 dark:hover:bg-stone-700 border border-stone-200 dark:border-stone-700 px-3.5 py-1.5 rounded-xl shadow-sm transition-colors"
               >
-                <MapPin className="w-3.5 h-3.5 text-[#580A14]" />
+                <MapPin className="w-3.5 h-3.5 text-[#580A14] dark:text-amber-400" />
                 <span>{lang === "ID" ? "Lihat Peta" : "View Map"}</span>
               </a>
             </div>
@@ -431,7 +445,7 @@ export default function Tour360DetailPage({
             {/* BOX DISPLAY 360 CONTAINER */}
             <div
               ref={containerRef}
-              className={`relative w-full rounded-3xl overflow-hidden border border-stone-300 shadow-xl bg-black transition-all ${
+              className={`relative w-full rounded-3xl overflow-hidden border border-stone-300 dark:border-stone-800 shadow-xl bg-black transition-all ${
                 isFullscreen ? "h-screen w-screen rounded-none" : "h-[420px] sm:h-[540px]"
               }`}
             >
@@ -469,8 +483,8 @@ export default function Tour360DetailPage({
               </div>
 
               {/* FLOATING CONTROL BAR (BOTTOM-CENTER: PILIH RUANGAN/SCENE) */}
-              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 w-[92%] sm:w-auto bg-white/95 backdrop-blur-md border border-stone-200/90 rounded-full px-4 py-2 shadow-2xl flex items-center justify-between sm:justify-center gap-3">
-                <span className="text-xs font-bold text-stone-700 shrink-0 hidden sm:inline-block">
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 w-[92%] sm:w-auto bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-stone-200/90 dark:border-stone-800 rounded-full px-4 py-2 shadow-2xl flex items-center justify-between sm:justify-center gap-3">
+                <span className="text-xs font-bold text-stone-700 dark:text-stone-300 shrink-0 hidden sm:inline-block">
                   {lang === "ID" ? "Pilih Ruangan:" : "Select Room:"}
                 </span>
 
@@ -481,8 +495,8 @@ export default function Tour360DetailPage({
                       onClick={() => handleSwitchScene(sId)}
                       className={`text-[11px] font-bold px-3 py-1.5 rounded-full transition-all shrink-0 border ${
                         currentSceneId === sId
-                          ? "bg-[#580A14] text-white border-[#580A14] shadow-sm"
-                          : "bg-stone-100 text-stone-700 border-stone-300 hover:bg-stone-200"
+                          ? "bg-[#580A14] dark:bg-amber-600 text-white dark:text-stone-950 border-[#580A14] dark:border-amber-600 shadow-sm"
+                          : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border-stone-300 dark:border-stone-700 hover:bg-stone-200 dark:hover:bg-stone-700"
                       }`}
                     >
                       {sData.title[lang]}
@@ -497,13 +511,13 @@ export default function Tour360DetailPage({
 
         {/* CONTAINER DESKRIPSI TEKNOLOGI TUR 360 */}
         <FadeIn direction="up" delay={0.3}>
-          <div className="bg-white rounded-3xl p-6 sm:p-12 border border-stone-200/90 shadow-sm space-y-8 max-w-5xl mx-auto">
+          <div className="bg-white dark:bg-stone-900 rounded-3xl p-6 sm:p-12 border border-stone-200/90 dark:border-stone-800 shadow-sm space-y-8 max-w-5xl mx-auto">
             
             <div className="text-center space-y-2 max-w-3xl mx-auto">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-amber-800 block">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-amber-800 dark:text-amber-400 block">
                 PANDUAN NAVIGASI VIRTUAL
               </span>
-              <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#580A14]">
+              <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#580A14] dark:text-amber-500">
                 {lang === "ID"
                   ? "Petunjuk Penjelajahan Tur Virtual 360°"
                   : "360° Virtual Tour Navigation Guide"}
@@ -511,18 +525,18 @@ export default function Tour360DetailPage({
               <div className="w-16 h-1 bg-amber-500 mx-auto rounded-full mt-2" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs sm:text-sm text-stone-600 leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs sm:text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
               <div className="space-y-4">
                 {data.infoParagraphs[lang].map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
               </div>
-              <div className="bg-stone-50 p-5 rounded-2xl border border-stone-200 space-y-3">
-                <h3 className="font-serif font-bold text-stone-900 text-sm flex items-center gap-2">
-                  <Info className="w-4 h-4 text-[#580A14]" />
+              <div className="bg-stone-50 dark:bg-stone-800 p-5 rounded-2xl border border-stone-200 dark:border-stone-700 space-y-3">
+                <h3 className="font-serif font-bold text-stone-900 dark:text-stone-100 text-sm flex items-center gap-2">
+                  <Info className="w-4 h-4 text-[#580A14] dark:text-amber-400" />
                   <span>{lang === "ID" ? "Petunjuk Ikon Hotspot" : "Hotspot Icon Guide"}</span>
                 </h3>
-                <ul className="space-y-2 text-xs text-stone-600">
+                <ul className="space-y-2 text-xs text-stone-600 dark:text-stone-400">
                   <li className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0" />
                     <span>
@@ -532,7 +546,7 @@ export default function Tour360DetailPage({
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#580A14] shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-[#580A14] dark:bg-amber-400 shrink-0" />
                     <span>
                       {lang === "ID"
                         ? "Ikon Informasi (i): Menampilkan penjelasan artefak bersejarah."
@@ -551,13 +565,14 @@ export default function Tour360DetailPage({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             
             {/* CARD 1: LIHAT MODEL 3D */}
-            <div className="bg-[#FFFDF9] rounded-2xl overflow-hidden border border-amber-200/80 shadow-sm space-y-4 p-5 hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
+            <div className="bg-[#FFFDF9] dark:bg-stone-900 rounded-2xl overflow-hidden border border-amber-200/80 dark:border-stone-800 shadow-sm space-y-4 p-5 hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
               <div className="space-y-4">
-                <div className="relative w-full h-52 rounded-xl overflow-hidden bg-stone-100 group">
+                <div className="relative w-full h-52 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 group">
                   <Image
                     src={data.model3dImage}
                     alt={data.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-[#580A14]/40 mix-blend-multiply" />
@@ -571,10 +586,10 @@ export default function Tour360DetailPage({
                 </div>
 
                 <div className="space-y-1.5 px-1">
-                  <h3 className="font-serif font-bold text-base text-stone-900 uppercase tracking-wide">
+                  <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 uppercase tracking-wide">
                     {lang === "ID" ? "LIHAT MODEL 3D" : "VIEW 3D MODEL"}
                   </h3>
-                  <p className="text-xs text-stone-600 leading-relaxed">
+                  <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
                     {lang === "ID"
                       ? "Lihat detail arsitektur bangunan melalui model 3D interaktif."
                       : "View building architecture details through interactive 3D models."}
@@ -585,7 +600,7 @@ export default function Tour360DetailPage({
               <div className="pt-2">
                 <Link
                   href={`/atraksi/${id}/3d`}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-white text-stone-800 border border-stone-300 hover:bg-[#580A14] hover:text-white hover:border-[#580A14] active:bg-[#580A14] active:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-200 border border-stone-300 dark:border-stone-700 hover:bg-[#580A14] hover:text-white dark:hover:bg-amber-600 dark:hover:text-stone-950 hover:border-[#580A14] dark:hover:border-amber-600 active:bg-[#580A14] active:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm"
                 >
                   <span>{lang === "ID" ? "Lihat Detail 3D" : "View 3D Details"}</span>
                   <ArrowRight className="w-4 h-4" />
@@ -594,13 +609,14 @@ export default function Tour360DetailPage({
             </div>
 
             {/* CARD 2: ATRAKSI BUDAYA */}
-            <div className="bg-[#FFFDF9] rounded-2xl overflow-hidden border border-amber-200/80 shadow-sm space-y-4 p-5 hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
+            <div className="bg-[#FFFDF9] dark:bg-stone-900 rounded-2xl overflow-hidden border border-amber-200/80 dark:border-stone-800 shadow-sm space-y-4 p-5 hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
               <div className="space-y-4">
-                <div className="relative w-full h-52 rounded-xl overflow-hidden bg-stone-100 group">
+                <div className="relative w-full h-52 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 group">
                   <Image
                     src="/bckodeon.png"
                     alt="Atraksi Budaya Odeon"
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-[#580A14]/35 mix-blend-multiply" />
@@ -614,10 +630,10 @@ export default function Tour360DetailPage({
                 </div>
 
                 <div className="space-y-1.5 px-1">
-                  <h3 className="font-serif font-bold text-base text-stone-900 uppercase tracking-wide">
+                  <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 uppercase tracking-wide">
                     {lang === "ID" ? "ATRAKSI BUDAYA" : "CULTURAL ATTRACTIONS"}
                   </h3>
-                  <p className="text-xs text-stone-600 leading-relaxed">
+                  <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
                     {lang === "ID"
                       ? "Temukan ragam pertunjukan seni tradisional, atraksi budaya, dan pengalaman wisata khas Odeon Kampoeng Naga."
                       : "Discover a variety of traditional art performances, cultural attractions, and unique tourism experiences of Odeon Kampoeng Naga."}
@@ -628,7 +644,7 @@ export default function Tour360DetailPage({
               <div className="pt-2">
                 <Link
                   href="/atraksi"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-white text-stone-800 border border-stone-300 hover:bg-[#580A14] hover:text-white hover:border-[#580A14] active:bg-[#580A14] active:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-200 border border-stone-300 dark:border-stone-700 hover:bg-[#580A14] hover:text-white dark:hover:bg-amber-600 dark:hover:text-stone-950 hover:border-[#580A14] dark:hover:border-amber-600 active:bg-[#580A14] active:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm"
                 >
                   <span>{lang === "ID" ? "Lihat Semua Atraksi" : "View All Attractions"}</span>
                   <ArrowRight className="w-4 h-4" />

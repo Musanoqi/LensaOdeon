@@ -411,14 +411,14 @@ export default function AtraksiDetailPage({
   const renderFactIcon = (name: string) => {
     switch (name) {
       case "landmark":
-        return <Landmark className="w-5 h-5 text-[#580A14]" />;
+        return <Landmark className="w-5 h-5 text-[#580A14] dark:text-amber-400" />;
       case "building":
-        return <Building2 className="w-5 h-5 text-[#580A14]" />;
+        return <Building2 className="w-5 h-5 text-[#580A14] dark:text-amber-400" />;
       case "utensils":
-        return <Utensils className="w-5 h-5 text-[#580A14]" />;
+        return <Utensils className="w-5 h-5 text-[#580A14] dark:text-amber-400" />;
       case "award":
       default:
-        return <Award className="w-5 h-5 text-[#580A14]" />;
+        return <Award className="w-5 h-5 text-[#580A14] dark:text-amber-400" />;
     }
   };
 
@@ -514,15 +514,15 @@ export default function AtraksiDetailPage({
         <FadeIn direction="up" delay={0.3}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {/* 1. ALAMAT */}
-            <div className="bg-white p-5 rounded-2xl border border-stone-200/80 shadow-sm space-y-2 flex flex-col justify-between">
+            <div className="bg-white dark:bg-stone-900 p-5 rounded-2xl border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-2 flex flex-col justify-between">
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-[#580A14]">
+                <div className="flex items-center gap-2 text-[#580A14] dark:text-amber-500">
                   <MapPin className="w-4 h-4" />
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">
                     {t.fullAddress}
                   </span>
                 </div>
-                <p className="text-xs text-stone-700 leading-relaxed font-medium">
+                <p className="text-xs text-stone-700 dark:text-stone-300 leading-relaxed font-medium">
                   {data.address}
                 </p>
               </div>
@@ -530,7 +530,7 @@ export default function AtraksiDetailPage({
                 href={data.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-semibold text-[#580A14] hover:underline inline-flex items-center gap-1 pt-2"
+                className="text-xs font-semibold text-[#580A14] dark:text-amber-400 hover:underline inline-flex items-center gap-1 pt-2"
               >
                 <span>{t.showMap}</span>
                 <ArrowRight className="w-3 h-3" />
@@ -538,31 +538,31 @@ export default function AtraksiDetailPage({
             </div>
 
             {/* 2. JAM OPERASIONAL DENGAN DYNAMIC STATUS */}
-            <div className="bg-white p-5 rounded-2xl border border-stone-200/80 shadow-sm space-y-2 flex flex-col justify-between">
+            <div className="bg-white dark:bg-stone-900 p-5 rounded-2xl border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-2 flex flex-col justify-between">
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-[#580A14]">
+                <div className="flex items-center gap-2 text-[#580A14] dark:text-amber-500">
                   <Clock className="w-4 h-4" />
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">
                     {t.opHours}
                   </span>
                 </div>
-                <p className="text-sm font-bold text-stone-900">
+                <p className="text-sm font-bold text-stone-900 dark:text-stone-100">
                   {data.openTime} - {data.closeTime} WIB
                 </p>
-                <p className="text-xs text-stone-500">{t.openDaily}</p>
+                <p className="text-xs text-stone-500 dark:text-stone-400">{t.openDaily}</p>
               </div>
 
               {/* DYNAMIC OPERATING STATUS */}
-              <div className="pt-2 border-t border-stone-100 flex items-center gap-1.5 text-xs font-semibold">
+              <div className="pt-2 border-t border-stone-100 dark:border-stone-800 flex items-center gap-1.5 text-xs font-semibold">
                 {isOpenNow === true ? (
                   <>
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span className="text-emerald-700">{t.openToday}</span>
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    <span className="text-emerald-700 dark:text-emerald-400">{t.openToday}</span>
                   </>
                 ) : isOpenNow === false ? (
                   <>
-                    <XCircle className="w-4 h-4 text-rose-600 shrink-0" />
-                    <span className="text-rose-700">{t.closedNow}</span>
+                    <XCircle className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0" />
+                    <span className="text-rose-700 dark:text-rose-400">{t.closedNow}</span>
                   </>
                 ) : (
                   <span className="text-stone-400">...</span>
@@ -571,17 +571,17 @@ export default function AtraksiDetailPage({
             </div>
 
             {/* 3. TIKET & BIAYA */}
-            <div className="bg-white p-5 rounded-2xl border border-stone-200/80 shadow-sm space-y-2">
-              <div className="flex items-center gap-2 text-[#580A14]">
+            <div className="bg-white dark:bg-stone-900 p-5 rounded-2xl border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-2">
+              <div className="flex items-center gap-2 text-[#580A14] dark:text-amber-500">
                 <Ticket className="w-4 h-4" />
-                <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">
                   {t.ticketPrice}
                 </span>
               </div>
-              <p className="text-xs font-bold text-stone-900 leading-snug">
+              <p className="text-xs font-bold text-stone-900 dark:text-stone-100 leading-snug">
                 {data.ticket[lang]}
               </p>
-              <p className="text-xs text-stone-500 leading-relaxed">
+              <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
                 {t.publicAccess}
               </p>
             </div>
@@ -609,7 +609,7 @@ export default function AtraksiDetailPage({
                   </div>
 
                   <div className="pt-2">
-                    <blockquote className="italic font-serif text-sm text-[#580A14] bg-amber-50/80 border-l-4 border-[#580A14] p-3.5 rounded-r-xl">
+                    <blockquote className="italic font-serif text-sm text-[#580A14] dark:text-amber-200 bg-amber-50/80 dark:bg-amber-950/50 border-l-4 border-[#580A14] dark:border-amber-600 p-3.5 rounded-r-xl">
                       "{data.quote[lang]}"
                     </blockquote>
                   </div>

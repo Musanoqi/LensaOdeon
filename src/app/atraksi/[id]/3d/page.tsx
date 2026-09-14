@@ -184,11 +184,15 @@ export default function Model3DDetailPage({
 
   // Script Loader untuk Google <model-viewer> & Event Listener Kamera Zoom Sync
   useEffect(() => {
-    const script = document.createElement("script");
-    script.type = "module";
-    script.src =
-      "https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js";
-    document.head.appendChild(script);
+    const srcUrl = "https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js";
+    let script = document.querySelector(`script[src="${srcUrl}"]`) as HTMLScriptElement;
+    
+    if (!script) {
+      script = document.createElement("script");
+      script.type = "module";
+      script.src = srcUrl;
+      document.head.appendChild(script);
+    }
 
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
@@ -221,9 +225,6 @@ export default function Model3DDetailPage({
     }
 
     return () => {
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
       if (viewer) {
         viewer.removeEventListener("camera-change", handleCameraChange);
@@ -281,19 +282,19 @@ export default function Model3DDetailPage({
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF8F5] pt-28 pb-24 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#FAF8F5] dark:bg-[#1C1917] pt-28 pb-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-12">
         
         {/* HEADER JUDUL PAGE */}
         <section className="text-center max-w-3xl mx-auto space-y-3">
           <FadeIn direction="down" delay={0.1}>
-            <span className="inline-block text-xs uppercase tracking-widest text-[#580A14] bg-amber-100/80 border border-amber-200/80 font-bold px-4 py-1.5 rounded-full shadow-sm">
+            <span className="inline-block text-xs uppercase tracking-widest text-[#580A14] dark:text-amber-300 bg-amber-100/80 dark:bg-amber-950/80 border border-amber-200/80 dark:border-amber-800/60 font-bold px-4 py-1.5 rounded-full shadow-sm">
               JELAJAH 3D INTERAKTIF
             </span>
           </FadeIn>
 
           <FadeIn direction="up" delay={0.15}>
-            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-stone-900 leading-tight">
+            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-stone-900 dark:text-stone-100 leading-tight">
               {lang === "ID"
                 ? "Jelajahi Kawasan Bersejarah Pecinan Sukabumi dalam Dimensi 3D"
                 : "Explore Sukabumi Chinatown Historic Area in 3D Dimension"}
@@ -301,7 +302,7 @@ export default function Model3DDetailPage({
           </FadeIn>
 
           <FadeIn direction="up" delay={0.2}>
-            <p className="text-stone-600 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
+            <p className="text-stone-600 dark:text-stone-400 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
               {lang === "ID"
                 ? "Eksplorasi detail arsitektur cagar budaya, museum pusaka, dan jejak akulturasi Pecinan Sukabumi melalui visualisasi 3D yang interaktif."
                 : "Explore details of heritage architecture, museums, and cultural acculturation through interactive 3D visualizations."}
@@ -319,9 +320,9 @@ export default function Model3DDetailPage({
                 href={data.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-700 bg-white hover:bg-stone-100 border border-stone-200 px-3.5 py-1.5 rounded-xl shadow-sm transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-700 dark:text-stone-200 bg-white dark:bg-stone-800 hover:bg-stone-100 dark:hover:bg-stone-700 border border-stone-200 dark:border-stone-700 px-3.5 py-1.5 rounded-xl shadow-sm transition-colors"
               >
-                <MapPin className="w-3.5 h-3.5 text-[#580A14]" />
+                <MapPin className="w-3.5 h-3.5 text-[#580A14] dark:text-amber-400" />
                 <span>{lang === "ID" ? "Lihat Peta" : "View Map"}</span>
               </a>
             </div>
@@ -329,7 +330,7 @@ export default function Model3DDetailPage({
             {/* BOX CONTAINER CANVAS */}
             <div
               ref={containerRef}
-              className={`relative w-full rounded-3xl overflow-hidden border border-stone-300 shadow-xl bg-gradient-to-b from-stone-900 via-stone-800 to-stone-900 transition-all ${
+              className={`relative w-full rounded-3xl overflow-hidden border border-stone-300 dark:border-stone-800 shadow-xl bg-gradient-to-b from-stone-900 via-stone-800 to-stone-900 transition-all ${
                 isFullscreen ? "h-screen w-screen rounded-none" : "h-[420px] sm:h-[540px]"
               }`}
             >
@@ -400,29 +401,29 @@ export default function Model3DDetailPage({
               </div>
 
               {/* FLOATING CONTROL BAR */}
-              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 w-[90%] sm:w-auto bg-white/90 backdrop-blur-md border border-stone-200/90 rounded-full px-4 py-2 shadow-2xl flex items-center justify-between sm:justify-center gap-4">
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 w-[90%] sm:w-auto bg-white/90 dark:bg-stone-900/90 backdrop-blur-md border border-stone-200/90 dark:border-stone-800 text-stone-700 dark:text-stone-200 rounded-full px-4 py-2 shadow-2xl flex items-center justify-between sm:justify-center gap-4">
                 <div className="flex items-center gap-2">
-                  <ZoomOut className="w-3.5 h-3.5 text-stone-500" />
+                  <ZoomOut className="w-3.5 h-3.5 text-stone-500 dark:text-stone-400" />
                   <input
                     type="range"
                     min="0"
                     max="100"
                     value={zoomValue}
                     onChange={handleZoomChange}
-                    className="w-20 sm:w-28 h-1.5 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-[#580A14]"
+                    className="w-20 sm:w-28 h-1.5 bg-stone-200 dark:bg-stone-700 rounded-lg appearance-none cursor-pointer accent-[#580A14] dark:accent-amber-500"
                   />
-                  <ZoomIn className="w-3.5 h-3.5 text-stone-500" />
+                  <ZoomIn className="w-3.5 h-3.5 text-stone-500 dark:text-stone-400" />
                 </div>
 
-                <div className="h-4 w-[1px] bg-stone-300" />
+                <div className="h-4 w-[1px] bg-stone-300 dark:bg-stone-700" />
 
                 <button
                   onClick={toggleAutoRotate}
-                  className="flex items-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-bold px-3 py-1 rounded-full transition-colors border border-stone-300/80 shrink-0"
+                  className="flex items-center gap-1.5 bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-200 text-xs font-bold px-3 py-1 rounded-full transition-colors border border-stone-300/80 dark:border-stone-700 shrink-0"
                 >
                   <span
                     className={`w-2 h-2 rounded-full ${
-                      isAutoRotate ? "bg-emerald-500 animate-pulse" : "bg-stone-400"
+                      isAutoRotate ? "bg-emerald-500 animate-pulse" : "bg-stone-400 dark:bg-stone-500"
                     }`}
                   />
                   <span>Auto Rotate</span>
@@ -435,13 +436,13 @@ export default function Model3DDetailPage({
 
         {/* CONTAINER DESKRIPSI TEKNOLOGI 3D */}
         <FadeIn direction="up" delay={0.3}>
-          <div className="bg-white rounded-3xl p-6 sm:p-12 border border-stone-200/90 shadow-sm space-y-8 max-w-5xl mx-auto">
+          <div className="bg-white dark:bg-stone-900 rounded-3xl p-6 sm:p-12 border border-stone-200/90 dark:border-stone-800 shadow-sm space-y-8 max-w-5xl mx-auto">
             
             <div className="text-center space-y-2 max-w-3xl mx-auto">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-amber-800 block">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-amber-800 dark:text-amber-400 block">
                 TEKNOLOGI & DIGITAL PRESERVATION
               </span>
-              <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#580A14]">
+              <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#580A14] dark:text-amber-500">
                 {lang === "ID"
                   ? "Jelajahi Setiap Sudut Bangunan dalam Model 3D Interaktif"
                   : "Explore Every Corner of the Building in Interactive 3D Model"}
@@ -449,7 +450,7 @@ export default function Model3DDetailPage({
               <div className="w-16 h-1 bg-amber-500 mx-auto rounded-full mt-2" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs sm:text-sm text-stone-600 leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs sm:text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
               <div className="space-y-4">
                 <p>{data.infoParagraphs[lang][0]}</p>
                 <p>{data.infoParagraphs[lang][1]}</p>
@@ -468,13 +469,14 @@ export default function Model3DDetailPage({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             
             {/* CARD 1: TUR VIRTUAL 360° */}
-            <div className="bg-[#FFFDF9] rounded-2xl overflow-hidden border border-amber-200/80 shadow-sm space-y-4 p-5 hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
+            <div className="bg-[#FFFDF9] dark:bg-stone-900 rounded-2xl overflow-hidden border border-amber-200/80 dark:border-stone-800 shadow-sm space-y-4 p-5 hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
               <div className="space-y-4">
-                <div className="relative w-full h-52 rounded-xl overflow-hidden bg-stone-100 group">
+                <div className="relative w-full h-52 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 group">
                   <Image
                     src={data.tour360Image}
                     alt={data.tour360Title[lang]}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-[#580A14]/35 mix-blend-multiply" />
@@ -488,10 +490,10 @@ export default function Model3DDetailPage({
                 </div>
 
                 <div className="space-y-1.5 px-1">
-                  <h3 className="font-serif font-bold text-base text-stone-900 uppercase tracking-wide">
+                  <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 uppercase tracking-wide">
                     {data.tour360Title[lang]}
                   </h3>
-                  <p className="text-xs text-stone-600 leading-relaxed">
+                  <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
                     {data.tour360Desc[lang]}
                   </p>
                 </div>
@@ -500,7 +502,7 @@ export default function Model3DDetailPage({
               <div className="pt-2">
                 <Link
                   href={`/atraksi/${id}/360`}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-white text-stone-800 border border-stone-300 hover:bg-[#580A14] hover:text-white hover:border-[#580A14] active:bg-[#580A14] active:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-200 border border-stone-300 dark:border-stone-700 hover:bg-[#580A14] hover:text-white dark:hover:bg-amber-600 dark:hover:text-stone-950 hover:border-[#580A14] dark:hover:border-amber-600 active:bg-[#580A14] active:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm"
                 >
                   <span>{lang === "ID" ? "Mulai Tur Sekarang" : "Start Tour Now"}</span>
                   <ArrowRight className="w-4 h-4" />
@@ -509,13 +511,14 @@ export default function Model3DDetailPage({
             </div>
 
             {/* CARD 2: ATRAKSI BUDAYA */}
-            <div className="bg-[#FFFDF9] rounded-2xl overflow-hidden border border-amber-200/80 shadow-sm space-y-4 p-5 hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
+            <div className="bg-[#FFFDF9] dark:bg-stone-900 rounded-2xl overflow-hidden border border-amber-200/80 dark:border-stone-800 shadow-sm space-y-4 p-5 hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
               <div className="space-y-4">
-                <div className="relative w-full h-52 rounded-xl overflow-hidden bg-stone-100 group">
+                <div className="relative w-full h-52 rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-800 group">
                   <Image
                     src="/bckodeon.png"
                     alt="Atraksi Budaya Odeon"
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-[#580A14]/35 mix-blend-multiply" />
@@ -529,10 +532,10 @@ export default function Model3DDetailPage({
                 </div>
 
                 <div className="space-y-1.5 px-1">
-                  <h3 className="font-serif font-bold text-base text-stone-900 uppercase tracking-wide">
+                  <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 uppercase tracking-wide">
                     {lang === "ID" ? "ATRAKSI BUDAYA" : "CULTURAL ATTRACTIONS"}
                   </h3>
-                  <p className="text-xs text-stone-600 leading-relaxed">
+                  <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
                     {lang === "ID"
                       ? "Temukan ragam pertunjukan seni tradisional, atraksi budaya, dan pengalaman wisata khas Odeon Kampoeng Naga."
                       : "Discover a variety of traditional art performances, cultural attractions, and unique tourism experiences of Odeon Kampoeng Naga."}
@@ -543,7 +546,7 @@ export default function Model3DDetailPage({
               <div className="pt-2">
                 <Link
                   href="/atraksi"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-white text-stone-800 border border-stone-300 hover:bg-[#580A14] hover:text-white hover:border-[#580A14] active:bg-[#580A14] active:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-200 border border-stone-300 dark:border-stone-700 hover:bg-[#580A14] hover:text-white dark:hover:bg-amber-600 dark:hover:text-stone-950 hover:border-[#580A14] dark:hover:border-amber-600 active:bg-[#580A14] active:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm"
                 >
                   <span>{lang === "ID" ? "Lihat Semua Atraksi" : "View All Attractions"}</span>
                   <ArrowRight className="w-4 h-4" />
