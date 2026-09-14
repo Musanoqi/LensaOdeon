@@ -66,28 +66,37 @@ const tour360DetailData: Record<
           ID: "Pelataran Utama Vihara",
           EN: "Main Courtyard of Vihara",
         },
-        image: "/360/vihara-contoh.jpg", // Sampel panorama 1
+        image: "/360/Vihara1.jpg", // Sampel panorama 1
         pitch: 0,
         yaw: 0,
         hfov: 110,
         hotSpots: [
           {
-            pitch: 2,
-            yaw: 15,
+            pitch: -1.27,
+            yaw: 88.2,
             type: "scene",
             text: {
-              ID: "Masuk ke Serambi Altar Utama",
-              EN: "Enter Main Altar Porch",
+              ID: "Naik ke lantai 2 ah",
+              EN: "Go up to the second floor",
             },
             sceneId: "serambi_altar",
           },
           {
-            pitch: 10,
-            yaw: -20,
+            pitch: -28,
+            yaw: -89,
             type: "info",
             text: {
-              ID: "Ornamen Naga Kembar Pelindung (Est. 1908)",
-              EN: "Twin Dragon Protective Ornaments (Est. 1908)",
+              ID: "Altar Pemujaan",
+              EN: "Main Altar",
+            },
+          },
+          {
+            pitch: -9.25,
+            yaw: -90,
+            type: "info",
+            text: {
+              ID: "Bodhisattva",
+              EN: "Bodhisattva",
             },
           },
         ],
@@ -97,14 +106,14 @@ const tour360DetailData: Record<
           ID: "Serambi & Ruang Altar Suci",
           EN: "Sacred Altar Porch & Hall",
         },
-        image: "/360/vihara-contoh.jpg", // Sampel panorama 2
+        image: "/360/Vihara2.jpg", // Sampel panorama 2
         pitch: 0,
         yaw: 0,
         hfov: 100,
         hotSpots: [
           {
-            pitch: -5,
-            yaw: 180,
+            pitch: -42.7,
+            yaw: 90.9,
             type: "scene",
             text: {
               ID: "Kembali ke Pelataran Utama",
@@ -141,14 +150,14 @@ const tour360DetailData: Record<
           ID: "Lantai 1: Ruang Pameran Utama",
           EN: "1st Floor: Main Exhibition Hall",
         },
-        image: "/360/museum-contoh.jpg",
+        image: "/360/Museum1.jpg",
         pitch: 0,
         yaw: 0,
         hfov: 110,
         hotSpots: [
           {
-            pitch: 5,
-            yaw: 30,
+            pitch: 10.25,
+            yaw: -87.8,
             type: "scene",
             text: {
               ID: "Naik Tangga ke Lantai 2 (Koleksi Arsip Kuno)",
@@ -157,12 +166,21 @@ const tour360DetailData: Record<
             sceneId: "lantai_2",
           },
           {
-            pitch: -2,
-            yaw: -45,
+            pitch: -23.3,
+            yaw: 36,
             type: "info",
             text: {
-              ID: "Koleksi Foto Kolonial Sukabumi 1930",
-              EN: "1930 Sukabumi Colonial Photo Collection",
+              ID: "Mesin Jahit Tua",
+              EN: "Old Sewing Machine",
+            },
+          },
+          {
+            pitch: 9,
+            yaw: 94.86,
+            type: "info",
+            text: {
+              ID: "Lukisan apa nih?",
+              EN: "What the f*** is this?",
             },
           },
         ],
@@ -172,14 +190,14 @@ const tour360DetailData: Record<
           ID: "Lantai 2: Galeri Dokumen & Pakaian Adat",
           EN: "2nd Floor: Document Gallery & Costumes",
         },
-        image: "/360/museum-contoh.jpg", // Sampel panorama 3
+        image: "/360/Museum2.jpg", // Sampel panorama 3
         pitch: 0,
         yaw: 0,
         hfov: 100,
         hotSpots: [
           {
-            pitch: -10,
-            yaw: 170,
+            pitch: -54.1,
+            yaw: -0.36,
             type: "scene",
             text: {
               ID: "Turun Tangga ke Lantai 1",
@@ -216,18 +234,18 @@ const tour360DetailData: Record<
           ID: "Serambi Depan Kedai",
           EN: "Front Porch Cafe",
         },
-        image: "/360/kopi-contoh.jpg",
+        image: "/360/Kopi.jpg",
         pitch: 0,
         yaw: 0,
         hfov: 110,
         hotSpots: [
           {
-            pitch: 0,
-            yaw: 10,
+            pitch: -11.9,
+            yaw: -127.42,
             type: "scene",
             text: {
-              ID: "Masuk ke Area Meja Vintage Interior",
-              EN: "Enter Interior Vintage Seating Area",
+              ID: "Masuk ke Area dapur ah",
+              EN: "Enter Kitchen Area",
             },
             sceneId: "ruang_dalam",
           },
@@ -238,20 +256,47 @@ const tour360DetailData: Record<
           ID: "Ruang Dalam & Meja Marmer Classic",
           EN: "Interior Hall & Classic Marble Tables",
         },
-        image: "/360/kopi-contoh.jpg",
+        image: "/360/Kopi2.jpg",
         pitch: 0,
         yaw: 0,
         hfov: 100,
         hotSpots: [
           {
-            pitch: 0,
-            yaw: 180,
+            pitch: -12.1,
+            yaw: 93.4,
             type: "scene",
             text: {
-              ID: "Keluar ke Serambi Depan",
-              EN: "Exit to Front Porch",
+              ID: "Keluar ah, panas bet disini",
+              EN: "Exit kitchen, so hott bro",
             },
             sceneId: "depan_kedai",
+          },
+          {
+            pitch: 32.26,
+            yaw: -104.5,
+            type: "info",
+            text: {
+              ID: "Gg bang, teh nya melayang",
+              EN: "What the f*** ?",
+            },
+          },
+          {
+            pitch: -8.47,
+            yaw: -95.57,
+            type: "info",
+            text: {
+              ID: "serius amat bang?",
+              EN: "Are u Hungry?",
+            },
+          },
+          {
+            pitch: -27.79,
+            yaw: 68,
+            type: "info",
+            text: {
+              ID: "awas tumpah bang",
+              EN: "be carefull bro, its mie ayam, the best food in the world",
+            },
           },
         ],
       },
@@ -401,7 +446,7 @@ export default function Tour360DetailPage({
   return (
     <main className="min-h-screen bg-[#FAF8F5] dark:bg-[#1C1917] pt-28 pb-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-12">
-        
+
         {/* HEADER JUDUL */}
         <section className="text-center max-w-3xl mx-auto space-y-3">
           <FadeIn direction="down" delay={0.1}>
@@ -428,7 +473,7 @@ export default function Tour360DetailPage({
         {/* CONTAINER PANORAMA 360° */}
         <FadeIn direction="up" delay={0.25}>
           <div className="space-y-3">
-            
+
             {/* BUTTON LIHAT PETA */}
             <div className="flex items-center justify-between px-1">
               <a
@@ -445,9 +490,8 @@ export default function Tour360DetailPage({
             {/* BOX DISPLAY 360 CONTAINER */}
             <div
               ref={containerRef}
-              className={`relative w-full rounded-3xl overflow-hidden border border-stone-300 dark:border-stone-800 shadow-xl bg-black transition-all ${
-                isFullscreen ? "h-screen w-screen rounded-none" : "h-[420px] sm:h-[540px]"
-              }`}
+              className={`relative w-full rounded-3xl overflow-hidden border border-stone-300 dark:border-stone-800 shadow-xl bg-black transition-all ${isFullscreen ? "h-screen w-screen rounded-none" : "h-[420px] sm:h-[540px]"
+                }`}
             >
               {/* ELEMENT DIV TEMPAT PANNELLUM BISA DIMOUNT */}
               <div id="panorama-container" className="w-full h-full" />
@@ -471,8 +515,8 @@ export default function Tour360DetailPage({
                         ? "Keluar Layar Penuh"
                         : "Exit Fullscreen"
                       : lang === "ID"
-                      ? "Layar Penuh"
-                      : "Fullscreen"}
+                        ? "Layar Penuh"
+                        : "Fullscreen"}
                   </span>
                   {isFullscreen ? (
                     <Minimize2 className="w-4 h-4 shrink-0" />
@@ -493,11 +537,10 @@ export default function Tour360DetailPage({
                     <button
                       key={sId}
                       onClick={() => handleSwitchScene(sId)}
-                      className={`text-[11px] font-bold px-3 py-1.5 rounded-full transition-all shrink-0 border ${
-                        currentSceneId === sId
-                          ? "bg-[#580A14] dark:bg-amber-600 text-white dark:text-stone-950 border-[#580A14] dark:border-amber-600 shadow-sm"
-                          : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border-stone-300 dark:border-stone-700 hover:bg-stone-200 dark:hover:bg-stone-700"
-                      }`}
+                      className={`text-[11px] font-bold px-3 py-1.5 rounded-full transition-all shrink-0 border ${currentSceneId === sId
+                        ? "bg-[#580A14] dark:bg-amber-600 text-white dark:text-stone-950 border-[#580A14] dark:border-amber-600 shadow-sm"
+                        : "bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border-stone-300 dark:border-stone-700 hover:bg-stone-200 dark:hover:bg-stone-700"
+                        }`}
                     >
                       {sData.title[lang]}
                     </button>
@@ -512,7 +555,7 @@ export default function Tour360DetailPage({
         {/* CONTAINER DESKRIPSI TEKNOLOGI TUR 360 */}
         <FadeIn direction="up" delay={0.3}>
           <div className="bg-white dark:bg-stone-900 rounded-3xl p-6 sm:p-12 border border-stone-200/90 dark:border-stone-800 shadow-sm space-y-8 max-w-5xl mx-auto">
-            
+
             <div className="text-center space-y-2 max-w-3xl mx-auto">
               <span className="text-[11px] font-bold uppercase tracking-widest text-amber-800 dark:text-amber-400 block">
                 PANDUAN NAVIGASI VIRTUAL
@@ -563,7 +606,7 @@ export default function Tour360DetailPage({
         {/* DUA CARD SEJAJAR (LIHAT MODEL 3D & ATRAKSI BUDAYA) */}
         <FadeIn direction="up" delay={0.35}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            
+
             {/* CARD 1: LIHAT MODEL 3D */}
             <div className="bg-[#FFFDF9] dark:bg-stone-900 rounded-2xl overflow-hidden border border-amber-200/80 dark:border-stone-800 shadow-sm space-y-4 p-5 hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
               <div className="space-y-4">

@@ -169,7 +169,11 @@ export default function OdeonMap() {
           margin: 0 !important;
           width: 320px !important;
         }
-        .leaflet-popup-content a {
+        .leaflet-popup-content a,
+        .leaflet-popup-content a:link,
+        .leaflet-popup-content a:visited,
+        .leaflet-container a,
+        .leaflet-container a:link {
           color: inherit !important;
           text-decoration: none !important;
         }
@@ -323,10 +327,10 @@ export default function OdeonMap() {
                         href={item.location.googleMapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 bg-[#580A14] hover:bg-amber-900 dark:bg-amber-600 dark:hover:bg-amber-500 text-amber-100 dark:text-stone-950 font-semibold px-3 py-1.5 rounded-lg transition-colors shadow-sm text-xs"
+                        className="inline-flex items-center gap-1.5 bg-[#580A14] hover:bg-amber-900 dark:bg-amber-600 dark:hover:bg-amber-500 text-white dark:text-stone-950 !text-white dark:!text-stone-950 font-semibold px-3 py-1.5 rounded-lg transition-colors shadow-sm text-xs"
                       >
-                        <span>{t.getDirections}</span>
-                        <Navigation className="w-3 h-3" />
+                        <span className="!text-white dark:!text-stone-950">{t.getDirections}</span>
+                        <Navigation className="w-3 h-3 text-white dark:text-stone-950 !text-white dark:!text-stone-950" />
                       </a>
                     </div>
                   </div>
