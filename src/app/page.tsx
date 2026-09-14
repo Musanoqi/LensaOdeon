@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Info } from "lucide-react";
+import { ArrowRight, Info, Layers } from "lucide-react";
 import OdeonMapWrapper from "../components/map/OdeonMapWrapper";
 import { useLanguage } from "../context/LanguageContext";
 import FadeIn from "../components/FadeIn";
@@ -177,7 +177,14 @@ export default function HomePage() {
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
                       />
-                      <div className="absolute inset-0 bg-black/10 dark:bg-black/30" />
+                      <div className="absolute inset-0 bg-[#580A14]/35 mix-blend-multiply" />
+                      <div className="absolute inset-0 bg-black/20" />
+
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-lg border border-orange-400/60 backdrop-blur-sm animate-float group-hover:scale-110 transition-transform duration-300">
+                          <Layers className="w-6 h-6" />
+                        </div>
+                      </div>
                     </div>
 
                     <div className="p-5 space-y-2">

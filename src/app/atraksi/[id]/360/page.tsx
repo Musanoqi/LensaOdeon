@@ -579,7 +579,7 @@ export default function Tour360DetailPage({
                   <div className="absolute inset-0 bg-black/20" />
 
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-[#580A14]/90 text-white flex items-center justify-center shadow-lg border border-amber-400/40 backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-lg border border-orange-400/60 backdrop-blur-sm animate-float group-hover:scale-110 transition-transform duration-300">
                       <Box className="w-6 h-6 stroke-[2]" />
                     </div>
                   </div>
@@ -623,7 +623,7 @@ export default function Tour360DetailPage({
                   <div className="absolute inset-0 bg-black/20" />
 
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-amber-500/90 text-stone-950 flex items-center justify-center shadow-lg border border-amber-300/60 backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-lg border border-orange-400/60 backdrop-blur-sm animate-float group-hover:scale-110 transition-transform duration-300">
                       <Layers className="w-6 h-6" />
                     </div>
                   </div>

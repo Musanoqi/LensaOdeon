@@ -169,6 +169,10 @@ export default function OdeonMap() {
           margin: 0 !important;
           width: 320px !important;
         }
+        .leaflet-popup-content a {
+          color: inherit !important;
+          text-decoration: none !important;
+        }
         .leaflet-container {
           font-family: inherit !important;
         }
@@ -319,7 +323,7 @@ export default function OdeonMap() {
                         href={item.location.googleMapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 bg-[#580A14] dark:bg-amber-600 text-white dark:text-stone-950 text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-amber-900 dark:hover:bg-amber-500 transition-colors shadow-sm"
+                        className="inline-flex items-center gap-1.5 bg-[#580A14] hover:bg-amber-900 dark:bg-amber-600 dark:hover:bg-amber-500 text-amber-100 dark:text-stone-950 font-semibold px-3 py-1.5 rounded-lg transition-colors shadow-sm text-xs"
                       >
                         <span>{t.getDirections}</span>
                         <Navigation className="w-3 h-3" />
