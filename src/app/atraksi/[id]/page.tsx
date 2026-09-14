@@ -423,18 +423,18 @@ export default function AtraksiDetailPage({
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF8F5] pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#FAF8F5] dark:bg-[#1C1917] pt-28 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto space-y-8">
         
         {/* HEADER JUDUL */}
         <section className="space-y-2 text-center md:text-left">
           <FadeIn direction="down" delay={0.1}>
-            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-stone-900 leading-tight">
+            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-stone-900 dark:text-stone-100 leading-tight">
               {data.title}
             </h1>
           </FadeIn>
           <FadeIn direction="up" delay={0.15}>
-            <p className="text-stone-600 text-sm sm:text-base max-w-3xl">
+            <p className="text-stone-600 dark:text-stone-400 text-sm sm:text-base max-w-3xl">
               {data.tagline[lang]}
             </p>
           </FadeIn>
@@ -442,11 +442,12 @@ export default function AtraksiDetailPage({
 
         {/* HERO IMAGE & CAPTION */}
         <FadeIn direction="up" delay={0.2}>
-          <div className="relative w-full h-[340px] sm:h-[440px] rounded-2xl overflow-hidden border border-stone-200 shadow-md group">
+          <div className="relative w-full h-[340px] sm:h-[440px] rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-md group">
             <Image
               src={data.image}
               alt={data.title}
               fill
+              sizes="(max-width: 768px) 100vw, 80vw"
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               priority
             />
@@ -593,15 +594,15 @@ export default function AtraksiDetailPage({
           {/* SEJARAH & FAKTA UNIK (LEFT - 2 COLS) */}
           <div className="lg:col-span-2">
             <FadeIn direction="up" delay={0.35} className="h-full">
-              <div className="bg-white p-6 sm:p-8 rounded-2xl border border-stone-200/80 shadow-sm space-y-6 flex flex-col justify-between h-full">
+              <div className="bg-white dark:bg-stone-900 p-6 sm:p-8 rounded-2xl border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-6 flex flex-col justify-between h-full">
                 <div className="space-y-4">
-                  <span className="text-xs uppercase tracking-wider text-[#580A14] font-bold block">
+                  <span className="text-xs uppercase tracking-wider text-[#580A14] dark:text-amber-500 font-bold block">
                     {t.heritageLabel}
                   </span>
-                  <h2 className="font-serif text-2xl font-bold text-stone-900">
+                  <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100">
                     {data.historyTitle[lang]}
                   </h2>
-                  <div className="space-y-3.5 text-xs sm:text-sm text-stone-600 leading-relaxed">
+                  <div className="space-y-3.5 text-xs sm:text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
                     {data.historyParagraphs[lang].map((paragraph, index) => (
                       <p key={index}>{paragraph}</p>
                     ))}
@@ -615,23 +616,23 @@ export default function AtraksiDetailPage({
                 </div>
 
                 {/* PENAMBAHAN: GRID FAKTA UNIK UNTUK MENGISI RUANG KOSONG DESKTOP */}
-                <div className="pt-6 border-t border-stone-100 space-y-3">
-                  <h3 className="text-xs uppercase tracking-wider font-bold text-stone-500">
+                <div className="pt-6 border-t border-stone-100 dark:border-stone-800 space-y-3">
+                  <h3 className="text-xs uppercase tracking-wider font-bold text-stone-500 dark:text-stone-400">
                     {t.quickFactsTitle}
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {data.quickFacts.map((fact, idx) => (
                       <div
                         key={idx}
-                        className="bg-stone-50 p-3 rounded-xl border border-stone-200/70 space-y-1"
+                        className="bg-stone-50 dark:bg-stone-800 p-3 rounded-xl border border-stone-200/70 dark:border-stone-700/50 space-y-1"
                       >
                         <div className="flex items-center gap-2">
                           {renderFactIcon(fact.iconName)}
-                          <span className="text-[11px] font-bold text-stone-800">
+                          <span className="text-[11px] font-bold text-stone-800 dark:text-stone-200">
                             {fact.title[lang]}
                           </span>
                         </div>
-                        <p className="text-[11px] text-stone-600 leading-tight">
+                        <p className="text-[11px] text-stone-600 dark:text-stone-400 leading-tight">
                           {fact.desc[lang]}
                         </p>
                       </div>
@@ -652,29 +653,30 @@ export default function AtraksiDetailPage({
                 </span>
 
                 {/* CARD 1: TUR VIRTUAL 360° */}
-                <div className="bg-[#FFFDF9] rounded-3xl overflow-hidden border border-amber-200/80 shadow-sm space-y-4 p-4 hover:shadow-md transition-all duration-300">
-                  <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-stone-100 group">
+                <div className="bg-[#FFFDF9] dark:bg-stone-900 rounded-3xl overflow-hidden border border-amber-200/80 dark:border-stone-800 shadow-sm space-y-4 p-4 hover:shadow-md transition-all duration-300">
+                  <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-stone-100 dark:bg-stone-800 group">
                     <Image
                       src={data.tour360Image}
                       alt={t.tour360Title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-[#580A14]/35 mix-blend-multiply" />
                     <div className="absolute inset-0 bg-black/20" />
 
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-amber-500/90 text-stone-950 flex items-center justify-center shadow-lg border border-amber-300/60 backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
-                        <Compass className="w-6 h-6 animate-pulse" />
+                      <div className="w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-lg border border-orange-400/60 backdrop-blur-sm animate-float group-hover:scale-110 transition-transform duration-300">
+                        <Compass className="w-6 h-6" />
                       </div>
                     </div>
                   </div>
 
                   <div className="space-y-1.5 px-1">
-                    <h3 className="font-serif font-bold text-base text-stone-900 uppercase tracking-wide">
+                    <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 uppercase tracking-wide">
                       {t.tour360Title}
                     </h3>
-                    <p className="text-xs text-stone-600 leading-relaxed">
+                    <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
                       {t.tour360Desc}
                     </p>
                   </div>
@@ -682,7 +684,7 @@ export default function AtraksiDetailPage({
                   <div className="pt-1">
                     <Link
                       href={`/atraksi/${id}/360`}
-                      className="w-full inline-flex items-center justify-center gap-2 bg-white text-stone-800 border border-stone-300 hover:bg-[#580A14] hover:text-white hover:border-[#580A14] active:bg-[#580A14] active:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-200 border border-stone-300 dark:border-stone-700 hover:bg-[#580A14] hover:text-white dark:hover:bg-amber-600 dark:hover:text-stone-950 hover:border-[#580A14] dark:hover:border-amber-600 active:bg-[#580A14] active:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm"
                     >
                       <span>{t.startTour}</span>
                       <ArrowRight className="w-4 h-4" />
@@ -691,29 +693,30 @@ export default function AtraksiDetailPage({
                 </div>
 
                 {/* CARD 2: LIHAT MODEL 3D */}
-                <div className="bg-[#FFFDF9] rounded-3xl overflow-hidden border border-amber-200/80 shadow-sm space-y-4 p-4 hover:shadow-md transition-all duration-300">
-                  <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-stone-100 group">
+                <div className="bg-[#FFFDF9] dark:bg-stone-900 rounded-3xl overflow-hidden border border-amber-200/80 dark:border-stone-800 shadow-sm space-y-4 p-4 hover:shadow-md transition-all duration-300">
+                  <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-stone-100 dark:bg-stone-800 group">
                     <Image
                       src={data.model3dImage}
                       alt={t.model3dTitle}
                       fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-[#580A14]/40 mix-blend-multiply" />
                     <div className="absolute inset-0 bg-black/20" />
 
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-[#580A14]/90 text-white flex items-center justify-center shadow-lg border border-amber-400/40 backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center shadow-lg border border-orange-400/40 backdrop-blur-sm animate-float group-hover:scale-110 transition-transform duration-300">
                         <Box className="w-6 h-6 stroke-[2]" />
                       </div>
                     </div>
                   </div>
 
                   <div className="space-y-1.5 px-1">
-                    <h3 className="font-serif font-bold text-base text-stone-900 uppercase tracking-wide">
+                    <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 uppercase tracking-wide">
                       {t.model3dTitle}
                     </h3>
-                    <p className="text-xs text-stone-600 leading-relaxed">
+                    <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
                       {t.model3dDesc}
                     </p>
                   </div>
@@ -721,7 +724,7 @@ export default function AtraksiDetailPage({
                   <div className="pt-1">
                     <Link
                       href={`/atraksi/${id}/3d`}
-                      className="w-full inline-flex items-center justify-center gap-2 bg-white text-stone-800 border border-stone-300 hover:bg-[#580A14] hover:text-white hover:border-[#580A14] active:bg-[#580A14] active:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-200 border border-stone-300 dark:border-stone-700 hover:bg-[#580A14] hover:text-white dark:hover:bg-amber-600 dark:hover:text-stone-950 hover:border-[#580A14] dark:hover:border-amber-600 active:bg-[#580A14] active:text-white text-xs font-bold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm"
                     >
                       <span>{t.view3d}</span>
                       <ArrowRight className="w-4 h-4" />

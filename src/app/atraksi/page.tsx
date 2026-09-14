@@ -157,7 +157,7 @@ export default function AtraksiPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#FAF8F5] pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#FAF8F5] dark:bg-[#1C1917] pt-32 pb-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-12">
         
         {/* HEADER PAGE */}
@@ -169,13 +169,13 @@ export default function AtraksiPage() {
           </FadeIn>
 
           <FadeIn direction="up" delay={0.2}>
-            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-stone-900 leading-tight whitespace-pre-line">
+            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-stone-900 dark:text-stone-100 leading-tight whitespace-pre-line">
               {t.title}
             </h1>
           </FadeIn>
 
           <FadeIn direction="up" delay={0.3}>
-            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-stone-600 dark:text-stone-400 text-sm sm:text-base leading-relaxed">
               {t.desc}
             </p>
           </FadeIn>
@@ -185,7 +185,7 @@ export default function AtraksiPage() {
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {attractionsData.map((item, idx) => (
             <FadeIn key={item.id} direction="up" delay={0.15 * (idx + 1)}>
-              <div className="bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-full group">
+              <div className="bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-full group">
                 <div>
                   {/* GAMBAR CARD & BADGE KATEGORI */}
                   <div className="relative w-full h-52 bg-stone-100 overflow-hidden">
@@ -193,6 +193,7 @@ export default function AtraksiPage() {
                       src={item.image}
                       alt={item.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-3 left-3 bg-black/75 backdrop-blur-md text-amber-200 text-[10px] font-semibold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-900/40">
@@ -204,22 +205,22 @@ export default function AtraksiPage() {
                   <div className="p-6 space-y-3">
                     <div className="flex items-start justify-between gap-2">
                       <div>
-                        <h2 className="font-serif font-bold text-xl text-stone-900 leading-snug">
+                        <h2 className="font-serif font-bold text-xl text-stone-900 dark:text-stone-100 leading-snug">
                           {item.title}
                         </h2>
-                        <p className="text-xs font-medium text-[#580A14] mt-0.5">
+                        <p className="text-xs font-medium text-[#580A14] dark:text-amber-500 mt-0.5">
                           {item.subtitle[language as "ID" | "EN"] ?? item.subtitle.ID}
                         </p>
                       </div>
 
                       {/* INDIKATOR JARAK REAL-TIME */}
-                      <div className="flex items-center gap-1 text-[11px] font-bold text-amber-900 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-full shrink-0">
+                      <div className="flex items-center gap-1 text-[11px] font-bold text-amber-900 dark:text-amber-100 bg-amber-50 dark:bg-amber-900/30 border border-amber-200/80 dark:border-amber-700/50 px-2 py-0.5 rounded-full shrink-0">
                         <MapPin className="w-3 h-3 text-amber-600 animate-pulse" />
                         <span>{realDistances[item.id] || "..."}</span>
                       </div>
                     </div>
 
-                    <p className="text-xs text-stone-600 leading-relaxed line-clamp-3">
+                    <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed line-clamp-3">
                       {item.desc[language as "ID" | "EN"] ?? item.desc.ID}
                     </p>
                   </div>
@@ -229,7 +230,7 @@ export default function AtraksiPage() {
                 <div className="p-6 pt-0 flex justify-end">
                   <Link
                     href={`/atraksi/${item.id}`}
-                    className="inline-flex items-center gap-2 text-xs font-semibold text-stone-700 bg-stone-50 hover:bg-[#580A14] hover:text-white border border-stone-200 py-2.5 px-4 rounded-xl transition-all duration-200"
+                    className="inline-flex items-center gap-2 text-xs font-semibold text-stone-700 dark:text-stone-200 bg-stone-50 dark:bg-stone-800 hover:bg-[#580A14] dark:hover:bg-amber-600 hover:text-white dark:hover:text-stone-950 border border-stone-200 dark:border-stone-700 py-2.5 px-4 rounded-xl transition-all duration-200"
                   >
                     <span>{t.moreInfo}</span>
                     <ArrowRight className="w-3.5 h-3.5" />

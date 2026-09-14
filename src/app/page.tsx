@@ -93,10 +93,11 @@ export default function HomePage() {
           src="/bckodeon2.png"
           alt="Latar Belakang Odeon Kampoeng Naga"
           fill
+          sizes="100vw"
           className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0 bg-[#3D060D]/60 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-[#3D060D]/60 dark:bg-black/70 backdrop-blur-[1px]" />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
           <FadeIn direction="down" delay={0.1}>
@@ -138,18 +139,18 @@ export default function HomePage() {
           {/* Panduan Left */}
           <div className="lg:col-span-2">
             <FadeIn direction="up" delay={0.1} className="h-full">
-              <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-stone-200/80 space-y-4 flex flex-col justify-center h-full">
-                <div className="flex items-center gap-2 text-[#580A14]">
+              <div className="bg-white dark:bg-stone-900 rounded-2xl p-6 md:p-8 shadow-sm border border-stone-200/80 dark:border-stone-800 space-y-4 flex flex-col justify-center h-full">
+                <div className="flex items-center gap-2 text-[#580A14] dark:text-amber-500">
                   <Info className="w-5 h-5 shrink-0" />
                   <h2 className="font-serif text-xl md:text-2xl font-bold">{t.guideTitle}</h2>
                 </div>
-                <p className="text-sm text-stone-600 leading-relaxed">{t.guideDesc}</p>
-                <ul className="space-y-3 text-sm text-stone-700 pl-1">
+                <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">{t.guideDesc}</p>
+                <ul className="space-y-3 text-sm text-stone-700 dark:text-stone-300 pl-1">
                   {t.guideList.map((item) => (
                     <li key={item.title} className="flex items-start gap-2">
-                      <span className="text-[#580A14] font-bold">•</span>
+                      <span className="text-[#580A14] dark:text-amber-500 font-bold">•</span>
                       <span>
-                        <strong className="font-semibold text-stone-900">{item.title}</strong> — {item.desc}
+                        <strong className="font-semibold text-stone-900 dark:text-stone-100">{item.title}</strong> — {item.desc}
                       </span>
                     </li>
                   ))}
@@ -162,34 +163,35 @@ export default function HomePage() {
           <div className="lg:col-span-1">
             <FadeIn direction="up" delay={0.25} className="h-full">
               <div className="space-y-2 flex flex-col justify-between h-full">
-                <span className="text-xs tracking-wider uppercase text-stone-500 font-bold px-1">
+                <span className="text-xs tracking-wider uppercase text-stone-500 dark:text-stone-400 font-bold px-1">
                   {t.exploreLabel}
                 </span>
 
-                <div className="bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm flex flex-col justify-between h-full group hover:shadow-md transition-shadow">
+                <div className="bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 shadow-sm flex flex-col justify-between h-full group hover:shadow-md transition-shadow">
                   <div>
                     <div className="relative w-full h-48 sm:h-52 overflow-hidden bg-stone-100">
                       <Image
                         src="/bckodeon.png"
                         alt={t.cardTitle}
                         fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
                       />
-                      <div className="absolute inset-0 bg-black/10" />
+                      <div className="absolute inset-0 bg-black/10 dark:bg-black/30" />
                     </div>
 
                     <div className="p-5 space-y-2">
-                      <h3 className="font-serif font-bold text-lg text-stone-900 tracking-wide uppercase">
+                      <h3 className="font-serif font-bold text-lg text-stone-900 dark:text-stone-100 tracking-wide uppercase">
                         {t.cardTitle}
                       </h3>
-                      <p className="text-xs text-stone-600 leading-relaxed">{t.cardDesc}</p>
+                      <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">{t.cardDesc}</p>
                     </div>
                   </div>
 
                   <div className="p-5 pt-0">
                     <Link
                       href="/atraksi"
-                      className="w-full inline-flex items-center justify-center gap-2 text-xs font-semibold text-stone-700 bg-stone-50 hover:bg-[#580A14] hover:text-white border border-stone-200 py-2.5 px-4 rounded-xl transition-colors duration-200 text-center"
+                      className="w-full inline-flex items-center justify-center gap-2 text-xs font-semibold text-stone-700 dark:text-stone-200 bg-stone-50 dark:bg-stone-800 hover:bg-[#580A14] dark:hover:bg-amber-600 hover:text-white dark:hover:text-stone-950 border border-stone-200 dark:border-stone-700 py-2.5 px-4 rounded-xl transition-colors duration-200 text-center"
                     >
                       <span>{t.cardButton}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -203,17 +205,17 @@ export default function HomePage() {
       </section>
 
       {/* SECTION 3: LOKASI KAWASAN */}
-      <section className="bg-stone-100/70 py-16 border-t border-stone-200">
+      <section className="bg-stone-100/70 dark:bg-[#161413] py-16 border-t border-stone-200 dark:border-stone-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <FadeIn direction="up" delay={0.1}>
             <div className="text-center space-y-2">
-              <span className="text-xs uppercase tracking-widest text-[#580A14] font-semibold">
+              <span className="text-xs uppercase tracking-widest text-[#580A14] dark:text-amber-500 font-semibold">
                 {t.locationLabel}
               </span>
-              <h2 className="font-serif text-2xl sm:text-4xl font-bold text-stone-900">
+              <h2 className="font-serif text-2xl sm:text-4xl font-bold text-stone-900 dark:text-stone-100">
                 {t.locationTitle}
               </h2>
-              <p className="text-xs sm:text-sm text-stone-600 max-w-xl mx-auto">{t.locationDesc}</p>
+              <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400 max-w-xl mx-auto">{t.locationDesc}</p>
             </div>
           </FadeIn>
 
